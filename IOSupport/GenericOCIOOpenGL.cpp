@@ -184,11 +184,6 @@ GenericOCIO::applyGL(const Texture* srcImg,
                      string* lut3DCacheIDParam,
                      string* shaderTextCacheIDParam)
 {
-#if OCIO_VERSION_MAJOR > 1.0 // more recent than 1.x?
-    // TODO: OCIO 2 with new GPU API https://github.com/imageworks/OpenColorIO/pull/539
-    // See https://github.com/imageworks/OpenColorIO/blob/master/src/apps/ociodisplay/main.cpp
-#error "Code must be upgraded for OCIO 2 with new GPU API"
-#else
     // Reference code: https://github.com/imageworks/OpenColorIO/blob/RB-1.1/src/apps/ociodisplay/main.cpp
     // Step 1: Create a GPU Shader Description
     // https://github.com/imageworks/OpenColorIO/blame/RB-1.1/src/apps/ociodisplay/main.cpp#L562
@@ -341,7 +336,7 @@ GenericOCIO::applyGL(const Texture* srcImg,
         glDeleteProgram(programID);
         glDeleteShader(fragShaderID);
     }
-#endif
+
 } // GenericOCIO::applyGL
 
 #endif // defined(OFX_IO_USING_OCIO)
